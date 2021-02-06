@@ -13,7 +13,8 @@ CREATE TABLE "user"(
 	"bio" VARCHAR(500),
 	"photo_URL" VARCHAR(500),
 	"visible" BOOLEAN DEFAULT TRUE,
-	"password" VARCHAR(200) );
+	"password" VARCHAR(200),
+    "level" INT );
 
 CREATE TABLE "entry" (
 	"id" SERIAL PRIMARY KEY,
