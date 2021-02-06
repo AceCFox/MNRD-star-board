@@ -6,6 +6,7 @@ CREATE TABLE "team"(
 	"color" VARCHAR (50) NOT NULL,
 	"photo_URL" VARCHAR(500) );
 
+
 CREATE TABLE "user"(
 	"id" SERIAL PRIMARY KEY,
 	"name" VARCHAR(50) NOT NULL,
@@ -22,3 +23,5 @@ CREATE TABLE "entry" (
 	"date" VARCHAR(50),
 	"description" VARCHAR (500),
 	"photo_URL" VARCHAR (500) );
+
+--- Starting Data: teams and 
