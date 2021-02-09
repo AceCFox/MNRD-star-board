@@ -15,6 +15,7 @@ CREATE TABLE "user"(
 	"photo_URL" VARCHAR(500),
 	"visible" BOOLEAN DEFAULT TRUE,
 	"password" VARCHAR(200),
+    "pronouns" VARCHAR (50),
     "level" INT );
 
 CREATE TABLE "entry" (
@@ -24,4 +25,11 @@ CREATE TABLE "entry" (
 	"description" VARCHAR (500),
 	"photo_URL" VARCHAR (500) );
 
---- Starting Data: teams and 
+--- Starting Data: teams and test user Minnie
+INSERT INTO  "team" ("name", "color") VALUES (
+	'Rockits', 'red'
+);
+
+INSERT INTO "user" ("name", "team_id", "pronouns", "level") VALUES (
+    'Minnie', 1, 'they/them/theirs', 10
+);
