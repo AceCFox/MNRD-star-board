@@ -1,5 +1,6 @@
 import './App.css';
 import EventForm from '../EventForm/EventForm.jsx';
+import Starfield from '../StarField/StarField.jsx';
 import HeadBar from '../HeadBar/HeadBar.jsx';
 import {
   HashRouter as Router,
@@ -15,12 +16,17 @@ function App() {
       <div className="App">
       <HeadBar/>
         <header className="App-header">
-        <Switch>
-        <Redirect exact from="/" to="/form" />
-          <Route
+          <Switch>
+            <Redirect exact from="/" to="/form" />
+            <Route
+                exact
+                path="/form"
+                component={EventForm}
+              />
+             <Route
               exact
-              path="/form"
-              component={EventForm}
+              path="/starField"
+              component={Starfield}
             />
           </Switch>
         </header>

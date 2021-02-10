@@ -26,6 +26,10 @@ function HeadBar() {
   function goForm() {
     history.push("/form")
   }
+
+  function goStar() {
+    history.push("/starField")
+  }
   
     return (
       <div>
@@ -33,7 +37,7 @@ function HeadBar() {
         <Toolbar>
           <Grid container justify="space-around">
           <Button color="inherit"  onClick = {goForm}>Log Activity</Button>
-          <Button color="inherit">Progress</Button>
+          <Button color="inherit" onClick = {goStar}>Progress</Button>
           <Button color="inherit">Preferences</Button>
           </Grid>
         </Toolbar>
