@@ -28,6 +28,7 @@ function EventForm() {
 
     return (
       <div>
+        <img src="https://www.mnrollerderby.com/wp-content/uploads/2019/08/minnesota-roller-derby-logo-card.png" className="App-logo" alt="logo" />
         <h1>Log your Practice or Activity!</h1>
         <Grid container justify="space-around">
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
