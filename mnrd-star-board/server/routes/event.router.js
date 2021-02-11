@@ -12,8 +12,8 @@ router.get('/all', (req, res) => {
 
     pool.query(queryString)
     .then((result) => (
-      res.send(result.rows),
-      console.log('back from db with', result.rows)
+      res.send(result.rows)
+     // console.log('back from db with', result.rows)
     ))
     .catch((error) => (
       res.sendStatus(500),

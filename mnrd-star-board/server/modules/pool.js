@@ -1,14 +1,18 @@
+/* the only line you likely need to change is
+
+ database: 'prime_app',
+
+ change `prime_app` to the name of your database, and you should be all set!
+*/
+
 const pg = require('pg');
 const url = require('url');
 
 let config = {};
 
-////YO! FOR DEPLOYMENT REMOVE THE ! ON THE NEXT LINE OR IT WON'T CONNECT TO AURORA DB 
 if (process.env.DATABASE_URL) {
-  // We configured our long-ass db_url string to match Heroku's configuration 
-  // but make it AWS, there is definitely a better way to do this, but it looks like:
+  // Heroku gives a url, not a connection object
   // https://github.com/brianc/node-pg-pool
-  //user:password@host:port/database
   const params = url.parse(process.env.DATABASE_URL);
   const auth = params.auth.split(':');
 
@@ -43,3 +47,4 @@ pool.on('error', (err) => {
 });
 
 module.exports = pool;
+
