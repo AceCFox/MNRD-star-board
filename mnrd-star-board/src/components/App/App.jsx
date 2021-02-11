@@ -9,9 +9,16 @@ import {
   Switch,
   Link
 } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux'
+import React, { useEffect } from 'react';
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch({type: 'FETCH_ACTIVITY'})
+  });
+
   return (
   
     <Router>

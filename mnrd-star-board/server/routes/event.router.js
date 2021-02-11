@@ -3,9 +3,22 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET route template
+ * GET all entries
  */
-router.get('/', (req, res) => {
+router.get('/all', (req, res) => {
+    console.log('in /api/event/all');
+
+    const queryString = `SELECT * from "entry" JOIN "user" ON "entry"."user_id" = "user"."id" JOIN "team" on "user"."team_id" = "team"."id";`;
+
+    pool.query(queryString)
+    .then((result) => (
+      res.send(result.rows),
+      console.log('back from db with', result.rows)
+    ))
+    .catch((error) => (
+      res.sendStatus(500),
+      console.log(error)
+    ))
     
 });
 
@@ -13,7 +26,7 @@ router.get('/', (req, res) => {
  * POST new entry
  */
 router.post('/new', (req, res) => {
-    console.log('in /api/event, with ', req.body);
+    console.log('in /api/event/new, with ', req.body);
 
     const postString = `INSERT INTO "entry" ("user_id", "date", "description", "photo_URL") 
         VALUES ($1, $2, $3, $4);`;
