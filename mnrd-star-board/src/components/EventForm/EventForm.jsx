@@ -8,15 +8,22 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+//styling for the MNRD colored button
+const useStyles = makeStyles({
+    root: {
+      background: '#00ACEA',
+    },
+  });
+
 
 function EventForm() {
     const [description, setDescription] = useState('');
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [photoURL, setPhotoURL] = useState('');
-
-    const handleDateChange = (date) => {
-      setSelectedDate(date);
-    };
+    const classes = useStyles();
 
     const handleChange = (event) => {
         setDescription(event.target.value);
@@ -25,6 +32,10 @@ function EventForm() {
     const handleURL = (event) => {
         setPhotoURL(event.target.value);
     };
+
+    const handleSubmit = () =>{
+        alert(`button clicked! ` + description + selectedDate + photoURL);
+    }
 
     return (
       <div>
@@ -65,6 +76,10 @@ function EventForm() {
                 onChange = {handleURL}
             />
         </Grid>
+        <br/>
+        <Button variant = 'contained' className={classes.root} onClick={handleSubmit} > 
+            Save Activity
+        </Button>
       </div>
     );
   }
