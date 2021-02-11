@@ -34,7 +34,13 @@ function EventForm() {
     };
 
     const handleSubmit = () =>{
-        alert(`button clicked! ` + description + selectedDate + photoURL);
+        const postObject = {
+            description: description,
+            date: selectedDate,
+            photoURL: photoURL,
+        }
+        alert(`button clicked! ` + postObject.description + postObject.date + postObject.photoURL);
+       
     }
 
     return (

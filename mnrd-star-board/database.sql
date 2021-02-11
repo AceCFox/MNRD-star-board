@@ -21,7 +21,7 @@ CREATE TABLE "user"(
 CREATE TABLE "entry" (
 	"id" SERIAL PRIMARY KEY,
 	"user_id" INT REFERENCES "user" NOT NULL,
-	"date" VARCHAR(50),
+	"date" VARCHAR(150),
 	"description" VARCHAR (500),
 	"photo_URL" VARCHAR (500) );
 
