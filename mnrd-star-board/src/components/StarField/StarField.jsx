@@ -54,8 +54,8 @@ export default function StarField (){
             x={star.x}
             y={star.y}
             numPoints={5}
-            innerRadius={20}
-            outerRadius={40}
+            innerRadius={13}
+            outerRadius={30}
             fill="#89b717"
             opacity={0.8}
             draggable
