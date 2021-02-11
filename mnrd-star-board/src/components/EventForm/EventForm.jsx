@@ -10,6 +10,7 @@ import {
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux'
 
 //styling for the MNRD colored button
 const useStyles = makeStyles({
@@ -24,6 +25,7 @@ function EventForm() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [photoURL, setPhotoURL] = useState('');
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     const handleChange = (event) => {
         setDescription(event.target.value);
@@ -39,8 +41,8 @@ function EventForm() {
             date: selectedDate,
             photoURL: photoURL,
         }
-        alert(`button clicked! ` + postObject.description + postObject.date + postObject.photoURL);
-       
+       // alert(`button clicked! ` + postObject.description + postObject.date + postObject.photoURL);
+        dispatch({type: "POST_ACTIVITY", payload: postObject})
     }
 
     return (
