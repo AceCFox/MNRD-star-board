@@ -1,13 +1,14 @@
-
 import React from 'react';
 import { render } from 'react-dom';
 import { Stage, Layer, Star, Text } from 'react-konva';
 import './StarField.css';
+import {useSelector} from 'react-redux'
+import { json } from 'express';
 
-
-function generateShapes() {
-  return [...Array(10)].map((_, i) => ({
-    id: i.toString(),
+function generateShapes(array) {
+  return array.map((star, i) => ({
+    ...star[i],
+    //id: i.toString(),
     x: Math.random() * window.innerWidth,
     y: Math.random() * window.innerHeight,
     rotation: Math.random() * 180,
@@ -15,10 +16,11 @@ function generateShapes() {
   }));
 }
 
-const INITIAL_STATE = generateShapes();
+//const INITIAL_STATE = generateShapes(state.events);
 
 export default function StarField (){
-  const [stars, setStars] = React.useState(INITIAL_STATE);
+  const events = useSelector(state => state.events);
+  const [stars, setStars] = React.useState(generateShapes(events));
 
   const handleDragStart = (e) => {
     const id = e.target.id();
@@ -46,7 +48,7 @@ export default function StarField (){
     <div className = "starField">
     <Stage width={window.innerWidth - 15} height={window.innerHeight-5}>
       <Layer>
-        <Text text="Try to drag a star" />
+    
         {stars.map((star) => (
           <Star
             key={star.id}
@@ -56,7 +58,7 @@ export default function StarField (){
             numPoints={5}
             innerRadius={13}
             outerRadius={30}
-            fill="#89b717"
+            fill='red'
             opacity={0.8}
             draggable
             rotation={star.rotation}
@@ -71,6 +73,7 @@ export default function StarField (){
             onDragEnd={handleDragEnd}
           />
         ))}
+        <Text text={JSON.stringify(stars)} />
       </Layer>
     </Stage>
     </div>
