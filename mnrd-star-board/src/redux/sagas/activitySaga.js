@@ -5,7 +5,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* postActivity(action){
     try{
         console.log ('in postActivity saga with ', action.payload);
-        yield axios.post('//localhost:5000/api/event/new', action.payload);
+        yield axios.post('/api/event/new', action.payload);
         //call the saga with the GET call to update user with most recent data
         yield put ({ type: 'FETCH_ACTIVITY' });
     }catch (error) {
@@ -17,7 +17,7 @@ function* postActivity(action){
 function* getActivity(){
     try{
         console.log ('in getActivity saga' );
-        const result = yield axios.get('//localhost:5000/api/event/all');
+        const result = yield axios.get('/api/event/all');
         console.log('back from server with: ', result.data);
         //TO DO - store results in a reducer
     }catch (error) {
