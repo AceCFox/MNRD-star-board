@@ -27,7 +27,7 @@ CREATE TABLE "entry" (
 
 --- Starting Data: teams and test user Minnie
 INSERT INTO  "team" ("name", "color") VALUES (
-	'Rockits', 'red'
+	'Rockits', '#EF3340'
 );
 
 INSERT INTO "user" ("name", "team_id", "pronouns", "level") VALUES (
