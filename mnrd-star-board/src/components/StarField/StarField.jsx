@@ -1,14 +1,12 @@
 import React from 'react';
-import { render } from 'react-dom';
 import { Stage, Layer, Star, Text } from 'react-konva';
 import './StarField.css';
 import {useSelector} from 'react-redux'
-import { json } from 'express';
 
 function generateShapes(array) {
   return array.map((star, i) => ({
-    ...star[i],
-    //id: i.toString(),
+    //...star[i],
+    id: i.toString(),
     x: Math.random() * window.innerWidth,
     y: Math.random() * window.innerHeight,
     rotation: Math.random() * 180,
@@ -16,7 +14,6 @@ function generateShapes(array) {
   }));
 }
 
-//const INITIAL_STATE = generateShapes(state.events);
 
 export default function StarField (){
   const events = useSelector(state => state.events);
