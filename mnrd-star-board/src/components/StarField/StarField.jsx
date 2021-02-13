@@ -3,17 +3,6 @@ import { Stage, Layer, Star, Text } from 'react-konva';
 import './StarField.css';
 import {useSelector} from 'react-redux'
 
-function generateShapes(array) {
-  return array.map((star, i) => ({
-    //...star[i],
-    id: i.toString(),
-    x: Math.random() * window.innerWidth,
-    y: Math.random() * window.innerHeight,
-    rotation: Math.random() * 180,
-    isDragging: false,
-  }));
-}
-
 
 export default function StarField (){
   const events = useSelector(state => state.events);
@@ -55,7 +44,7 @@ export default function StarField (){
             numPoints={5}
             innerRadius={13}
             outerRadius={30}
-            fill='red'
+            fill={star.color}
             opacity={0.8}
             draggable
             rotation={star.rotation}
@@ -70,7 +59,7 @@ export default function StarField (){
             onDragEnd={handleDragEnd}
           />
         ))}
-        <Text text={JSON.stringify(stars)} />
+        <Text text={JSON.stringify(stars)} color = "white"/>
       </Layer>
     </Stage>
     </div>

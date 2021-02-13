@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET all entries
+ * GET all visible entries
  */
 router.get('/all', (req, res) => {
     const queryString = `SELECT "entry"."id", "entry"."date", "entry"."description", "entry"."photo_URL", 
