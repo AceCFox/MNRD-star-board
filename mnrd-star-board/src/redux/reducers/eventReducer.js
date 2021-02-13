@@ -12,6 +12,18 @@ const eventReducer = (state = [], action) => {
         return events;
       case 'UNSET_EVENT':
         return [];
+      case 'DRAG_STAR':
+        for (let i = 0; i< state.length; i++){
+          if (state[i].id === action.payload){
+            state[i].isDragging = true;
+          }
+        }
+        return state
+      case 'DRAG_END':
+        for (let i = 0; i< state.length; i++){
+          state[i].isDragging = false;
+        }
+        return state
       default:
         return state;
     }

@@ -1,33 +1,19 @@
 import React from 'react';
 import { Stage, Layer, Star, Text } from 'react-konva';
 import './StarField.css';
-import {useSelector} from 'react-redux'
-
+import {useSelector, useDispatch} from 'react-redux'
 
 export default function StarField (){
   const events = useSelector(state => state.events);
-  const [stars, setStars] = React.useState(events);
+  const dispatch = useDispatch()
 
   const handleDragStart = (e) => {
     const id = e.target.id();
-    setStars(
-      stars.map((star) => {
-        return {
-          ...star,
-          isDragging: star.id === id,
-        };
-      })
-    );
+    dispatch({type: 'DRAG_STAR', payload: id})
   };
+
   const handleDragEnd = (e) => {
-    setStars(
-      stars.map((star) => {
-        return {
-          ...star,
-          isDragging: false,
-        };
-      })
-    );
+    dispatch({type: 'DRAG_END'})
   };
 
   return (
@@ -35,7 +21,8 @@ export default function StarField (){
     <Stage width={window.innerWidth - 15} height={window.innerHeight-5}>
       <Layer>
     
-        {stars.map((star) => (
+        {events.map((star) => (
+          
           <Star
             key={star.id}
             id={star.id}
@@ -57,9 +44,9 @@ export default function StarField (){
             scaleY={star.isDragging ? 1.2 : 1}
             onDragStart={handleDragStart}
             onDragEnd={handleDragEnd}
-          />
+          >
+          </Star>
         ))}
-        <Text text={JSON.stringify(stars)} color = "white"/>
       </Layer>
     </Stage>
     </div>

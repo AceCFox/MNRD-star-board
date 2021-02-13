@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux'
 //styling for the MNRD colored button
 const useStyles = makeStyles({
     root: {
-      background: '#00ACEA',
+      background: '#00B6F1',
     },
   });
 
