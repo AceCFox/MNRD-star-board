@@ -6,14 +6,16 @@ const router = express.Router();
  * GET all entries
  */
 router.get('/all', (req, res) => {
-    console.log('in /api/event/all');
-
-    const queryString = `SELECT * from "entry" JOIN "user" ON "entry"."user_id" = "user"."id" JOIN "team" on "user"."team_id" = "team"."id";`;
+    const queryString = `SELECT "entry"."id", "entry"."date", "entry"."description", "entry"."photo_URL", 
+        "user"."name", "user"."pronouns", "team"."name", "team"."color" 
+        FROM "entry" 
+        JOIN "user" ON "entry"."user_id" = "user"."id" 
+        JOIN "team" on "user"."team_id" = "team"."id"
+        WHERE "user"."visible" = TRUE;`;
 
     pool.query(queryString)
     .then((result) => (
       res.send(result.rows)
-     // console.log('back from db with', result.rows)
     ))
     .catch((error) => (
       res.sendStatus(500),
