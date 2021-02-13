@@ -19,10 +19,8 @@ export default function StarField (){
   return (
     <div className = "starField">
     <Stage width={window.innerWidth - 15} height={window.innerHeight-5}>
-      <Layer>
-    
-        {events.map((star) => (
-          
+      <Layer> 
+        {events.map((star, index) => (
           <Star
             key={star.id}
             id={star.id}

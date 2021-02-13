@@ -26,9 +26,16 @@ CREATE TABLE "entry" (
 	"photo_URL" VARCHAR (500) );
 
 --- Starting Data: teams and test user Minnie
-INSERT INTO  "team" ("name", "color") VALUES (
-	'Rockits', '#EF3340'
-);
+INSERT INTO  "team" ("name", "color") VALUES 
+	('Rockits', '#EF3340'),
+	('Green', '#00AC4E'),
+	('Orange', '#FF6900'),
+	('Pink', '#D90E81'),
+	('Officials', '#FFFFFF'),
+	('Frostbite', '#4C2683'),
+	('Windchill', '#65C0E5'),
+	('All-Stars', '#00B6F1'),
+	('Other', '#FFD700');
 
 INSERT INTO "user" ("name", "team_id", "pronouns", "level") VALUES (
     'Minnie', 1, 'they/them/theirs', 10
