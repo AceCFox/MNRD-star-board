@@ -17,7 +17,7 @@ function generateShapes(array) {
 
 export default function StarField (){
   const events = useSelector(state => state.events);
-  const [stars, setStars] = React.useState(generateShapes(events));
+  const [stars, setStars] = React.useState(events);
 
   const handleDragStart = (e) => {
     const id = e.target.id();

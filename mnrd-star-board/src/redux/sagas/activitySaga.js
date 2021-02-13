@@ -19,7 +19,8 @@ function* getActivity(){
         console.log ('in getActivity saga' );
         const result = yield axios.get('/api/event/all');
         console.log('back from server with: ', result.data);
-        //TO DO - store results in a reducer
+        //store results in a reducer
+        yield put ({ type: 'SET_EVENT', payload: result.data});
     }catch (error) {
         console.log('Error with event GET:', error);
     }
