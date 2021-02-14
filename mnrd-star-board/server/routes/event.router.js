@@ -7,7 +7,7 @@ const router = express.Router();
  */
 router.get('/all', (req, res) => {
     const queryString = `SELECT "entry"."id", "entry"."date", "entry"."description", "entry"."photo_URL", 
-        "user"."name", "user"."pronouns", "team"."name", "team"."color" 
+        "user"."name", "user"."pronouns", "team"."color", "team"."name" AS "team_name"
         FROM "entry" 
         JOIN "user" ON "entry"."user_id" = "user"."id" 
         JOIN "team" on "user"."team_id" = "team"."id"
