@@ -1,6 +1,11 @@
 .starField { 
     font-size: calc(10px + 2vmin);
     background-color: black;
+    display: flex;
     color: cyan
   }
+
+.stage {
+   display: flex;
+}
   

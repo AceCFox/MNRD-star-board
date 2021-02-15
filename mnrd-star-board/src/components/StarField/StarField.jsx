@@ -44,7 +44,7 @@ export default function StarField (){
   return (
     <div className = "starField">
     {/* Draggable Stars: */}
-    <Stage width={window.innerWidth} height={window.innerHeight-80}>
+    <Stage width={window.innerWidth} height={window.innerHeight}>
       <Layer> 
         {events.map((star) => (
           <Star

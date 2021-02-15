@@ -33,7 +33,7 @@ function HeadBar() {
   
     return (
       <div>
-        <AppBar position="static" className = {classes.root} >
+        <AppBar className = {classes.root} >
         <Toolbar>
           <Grid container justify="space-around">
           <Button color="inherit"  onClick = {goForm}>Log Activity</Button>
