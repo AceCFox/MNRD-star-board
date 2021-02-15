@@ -3,8 +3,8 @@ import { Stage, Layer, Star, Text, Group} from 'react-konva';
 import './StarField.css';
 import {useSelector, useDispatch} from 'react-redux'
 import Popover from '@material-ui/core/Popover';
-import Modal from '@material-ui/core/Modal';
-import { eventChannel } from 'redux-saga';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 export default function StarField (){
   const events = useSelector(state => state.events);
@@ -84,8 +84,10 @@ export default function StarField (){
           horizontal: 'center',
         }}
       >
-        {activity.description} ~ {activity.name} 
-        ~ {activity.date.slice(0,10)}
+        <Box p= {1} maxWidth = {200}>
+          <Typography> {activity.description} ~ {activity.name} ~ {activity.date.slice(0,10)}
+          </Typography>
+        </Box>
       </Popover>
     </div>
   );
