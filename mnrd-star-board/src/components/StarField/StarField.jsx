@@ -10,6 +10,7 @@ export default function StarField (){
   const events = useSelector(state => state.events);
   const dispatch = useDispatch()
   const [anchorEl, setAnchorEl] = React.useState({attrs:{}});
+  const [activity, setActivity] = React.useState({date:''});
 
   const handleDragStart = (e) => {
     const id = e.target.id();
@@ -23,7 +24,11 @@ export default function StarField (){
   // popover functionality:
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    console.log(event.currentTarget.attrs);
+    for (let thing of events){
+      if (thing.id === event.currentTarget.attrs.id){
+        setActivity(thing)
+      }
+    }
   };
 
   const handleClose = () => {
@@ -71,15 +76,16 @@ export default function StarField (){
         anchorPosition={{ top: anchorEl.attrs.y, left: anchorEl.attrs.x }}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
+          vertical: 'center',
+          horizontal: 'right',
         }}
         transformOrigin={{
-          vertical: 'top',
+          vertical: 'center',
           horizontal: 'center',
         }}
       >
-        popover text!
+        {activity.description} ~ {activity.name} 
+        ~ {activity.date.slice(0,10)}
       </Popover>
     </div>
   );
