@@ -2,10 +2,10 @@ const eventReducer = (state = [], action) => {
     switch (action.type) {
       case 'SET_EVENT':
         let events = action.payload;
-        //add some properties for the pretty konva
+        //add the initial star positions, and rotation
         for (let i = 0 ; i< events.length; i++){
-            events[i].x = Math.random() * window.innerWidth;
-            events[i].y =  Math.random() * window.innerHeight;
+            events[i].x = ( Math.random() * window.innerWidth * .95) +  (window.innerWidth * .025);
+            events[i].y = ( Math.random() * window.innerHeight * .9) + (window.innerHeight * .08);
             events[i].rotation = Math.random() * 180;
             events[i].isDragging = false;
         }

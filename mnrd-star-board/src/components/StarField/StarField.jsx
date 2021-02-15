@@ -85,7 +85,7 @@ export default function StarField (){
           horizontal: 'center',
         }}
         transformOrigin={{
-          vertical: 'center',
+          vertical: 'bottom',
           horizontal: 'center',
         }}
       >

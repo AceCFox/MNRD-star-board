@@ -2,7 +2,8 @@
     font-size: calc(10px + 2vmin);
     background-color: black;
     display: flex;
-    color: cyan
+    color: cyan;
+    min-height: 100vh;
   }
 
 .stage {
