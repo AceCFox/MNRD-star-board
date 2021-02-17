@@ -23,6 +23,8 @@ function UserPrefs() {
     return (
       <div>
         <h1>{user.name}'s Preferences</h1>
+        <p>Pronouns: {user.pronouns}</p>
+        <h2> {user.team_id}</h2>
       </div>
     );
   }

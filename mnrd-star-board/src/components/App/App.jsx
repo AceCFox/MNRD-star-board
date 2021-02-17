@@ -20,6 +20,7 @@ function App() {
   useEffect(() => {
     dispatch({type: 'FETCH_ACTIVITY'})
     dispatch({type: 'FETCH_USER'})
+    dispatch({type: 'FETCH_TEAM'})
   });
 
   return (
