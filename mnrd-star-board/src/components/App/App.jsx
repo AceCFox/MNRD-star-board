@@ -13,6 +13,7 @@ import {
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import React, { useEffect } from 'react';
+import 'fontsource-roboto';
 
 function App() {
   const dispatch = useDispatch()
