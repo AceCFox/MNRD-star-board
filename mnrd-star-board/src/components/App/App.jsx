@@ -19,6 +19,7 @@ function App() {
 
   useEffect(() => {
     dispatch({type: 'FETCH_ACTIVITY'})
+    dispatch({type: 'FETCH_USER'})
   });
 
   return (

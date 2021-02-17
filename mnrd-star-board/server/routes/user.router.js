@@ -7,9 +7,20 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
-router.get('/', rejectUnauthenticated, (req, res) => {
+//add rejectUnauthenticated after url on the next line once auth
+router.get('/', (req, res) => {
   // Send back user object from the session (previously queried from the database)
-  res.send(req.user);
+  //res.send(req.user);
+  //uncomment the above, and remove below once auth is added
+  const queryText = `SELECT * FROM "user" WHERE "id" = 1;`;
+  pool.query(queryText)
+  .then((result) => (
+    res.send(result.rows[0])
+  ))
+  .catch((error) => (
+    res.sendStatus(500),
+    console.log(error)
+  ))
 });
 
 // Handles POST request with new user data
