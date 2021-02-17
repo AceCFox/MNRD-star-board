@@ -31,17 +31,21 @@ function HeadBar() {
     history.push("/starField")
   }
   
+  function goPrefs() {
+    history.push("/userPrefs")
+  }
+
     return (
       <div>
         <AppBar className = {classes.root} >
-        <Toolbar>
-          <Grid container justify="space-around">
-          <Button color="inherit"  onClick = {goForm}>Log Activity</Button>
-          <Button color="inherit" onClick = {goStar}>Progress</Button>
-          <Button color="inherit">Preferences</Button>
-          </Grid>
-        </Toolbar>
-      </AppBar>
+          <Toolbar>
+            <Grid container justify="space-around">
+            <Button color="inherit"  onClick = {goForm}>Log Activity</Button>
+            <Button color="inherit" onClick = {goStar}>Progress</Button>
+            <Button color="inherit" onClick = {goPrefs}>Preferences</Button>
+            </Grid>
+          </Toolbar>
+        </AppBar>
       </div>
     );
   }
