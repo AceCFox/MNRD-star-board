@@ -1,5 +1,5 @@
 //imports
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
@@ -9,6 +9,11 @@ import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import {useSelector, useDispatch} from 'react-redux'
 import Typography from '@material-ui/core/Typography';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 //style
 const useStyles = makeStyles({
@@ -24,14 +29,33 @@ const useStyles = makeStyles({
 function UserPrefs() {
     const user = useSelector(state => state.user);
     const teams = useSelector(state => state.teams);
-    let teamName = 'Other';
+    const [EditTeam, setEditTeam] = useState(false);
+    const [Team, setTeam] = useState({});
+    const dispatch = useDispatch();
 
+     // Similar to componentDidMount and componentDidUpdate:
+    useEffect(() => {
     //find team name associated with user
-    for (let team of teams){
-        if (user.team_id===team.id){
-            teamName = team.name
+        for (let team of teams){
+            if (user.team_id===team.id){
+                setTeam(team);
+            }
         }
-
+    });
+    
+    const handleChangeTeam = (event) => {
+        let id = event.target.value
+        for (let team of teams){
+            if (team.id===id){
+                setTeam(team);
+            }
+        }
+        dispatch({type: "UPDATE_TEAM", payload: id})
+        handleToggleEdit();
+    } 
+   
+    const handleToggleEdit = () =>{
+        setEditTeam(!EditTeam)
     }
   
     return (
@@ -40,12 +64,30 @@ function UserPrefs() {
         <Typography variant = "h5">Pronouns: {user.pronouns}</Typography>
         <br/>
        <Grid container direction = "row" alignContent = "center" justify = "center" >
-           <Typography variant="h3"> Team:  {teamName}  </Typography> 
+           {EditTeam ?
+           <FormControl size="medium" >
+                <InputLabel id="team-picker-label">Team</InputLabel>
+                    <Select
+                    labelId="team-picker-label"
+                    id="team-picker"
+                    value={Team.id}
+                    onChange={handleChangeTeam}
+                    >
+                    {teams.map((team)=>( 
+                        <MenuItem value={team.id} key = {team.id}>{team.name}</MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+           :
+            <>
+            <Typography variant="h3"> Team:  {Team.name}  </Typography> 
            <Tooltip title="Edit Team" placement="right-start"> 
-                <IconButton aria-label="edit">
+                <IconButton aria-label="edit" onClick = {handleToggleEdit}>
                     <EditIcon />
                 </IconButton>
             </Tooltip>
+            </>
+            }
        </Grid> 
       { <Typography variant = "h2">Bio</Typography> && user.bio}
 
