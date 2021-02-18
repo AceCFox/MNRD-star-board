@@ -14,10 +14,23 @@ function* getTeams(){
     }
 }
 
+//will fire on UPDATE_TEAM actions
+function* putUserTeam(action){
+    try{
+        const result = yield axios.put('/api/team/'+action.payload);
+        //call the saga to get the updated star and user data
+        yield put ({type: 'FETCH_USER'});
+        yield put ({type:'FETCH_ACTIVITY'})
+    }catch (error) {
+        console.log('Error with event GET:', error);
+    }
+}
 
 
-function* activitySaga() {
+
+function* teamSaga() {
     yield takeLatest('FETCH_TEAM', getTeams);
+    yield takeLatest('UPDATE_TEAM', putUserTeam);
   }
 
-export default activitySaga;
+export default teamSaga;
