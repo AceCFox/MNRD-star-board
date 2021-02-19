@@ -74,7 +74,8 @@ export default function StarField (){
         <Text 
           fill = "white" 
           fontSize = {30}
-          text = {events.length + " Stars in the sky"}
+          fontStyle = "italic"
+          text = {events.length + " Stars in the sky..."}
           y = {window.innerHeight *.93}
           x ={10}
           />
