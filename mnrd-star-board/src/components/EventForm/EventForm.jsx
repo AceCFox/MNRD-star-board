@@ -71,7 +71,7 @@ function EventForm() {
             <TextField
                 id="description"
                 label="What did you do?"
-                placeholder="I did a virtual Solcana Workout for 45 minutes with a 30 lb kettlebell!"
+                placeholder="Virtual Workout with a 30 lb kettlebell!"
                 multiline
                 value = {description}
                 onChange = {handleChange}
