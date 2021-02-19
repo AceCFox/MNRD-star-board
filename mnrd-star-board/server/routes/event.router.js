@@ -19,7 +19,7 @@ router.get('/all', (req, res) => {
     ))
     .catch((error) => (
       res.sendStatus(500),
-      console.log(error)
+      console.log('error on event get: ', error)
     ))
     
 });
@@ -40,7 +40,7 @@ router.post('/new', (req, res) => {
         res.sendStatus(200)
     )).catch((error) => (
         res.sendStatus(500),
-        console.log(error)
+        console.log('error on event post: ', error)
     ))
 });
 

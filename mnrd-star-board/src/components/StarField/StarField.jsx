@@ -80,6 +80,7 @@ export default function StarField (){
             scaleX={star.isDragging ? 1.2 : 1}
             scaleY={star.isDragging ? 1.2 : 1}
             onClick = {handleClick}
+            numPoints = {star.points}
           />
         ))}
       </Layer>

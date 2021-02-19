@@ -5,9 +5,10 @@ const eventReducer = (state = [], action) => {
         //add the initial star positions, and rotation
         for (let i = 0 ; i< events.length; i++){
             events[i].x = ( Math.random() * window.innerWidth * .95) +  (window.innerWidth * .025);
-            events[i].y = ( Math.random() * window.innerHeight * .9) + (window.innerHeight * .08);
+            events[i].y = ( Math.random() * window.innerHeight * .8) + (window.innerHeight * .1);
             events[i].rotation = Math.random() * 180;
             events[i].isDragging = false;
+            events[i].points = Math.floor(Math.random() * Math.floor(4)+5)
         }
         return events;
       case 'UNSET_EVENT':
