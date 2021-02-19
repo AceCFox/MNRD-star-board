@@ -60,9 +60,9 @@ function UserPrefs() {
   
     return (
       <div>
-        <Typography variant = "h1">{user.name}'s Preferences</Typography>
-        <Typography variant = "h5">Pronouns: {user.pronouns}</Typography>
-        <br/>
+        <h1>{user.name}'s Preferences</h1>
+        <h5>Pronouns: {user.pronouns}</h5>
+        {/* <br/> */}
        <Grid container direction = "row" alignContent = "center" justify = "center" >
            {EditTeam ?
            <FormControl size="medium" >
@@ -80,7 +80,7 @@ function UserPrefs() {
             </FormControl>
            :
             <>
-            <Typography variant="h3"> Team:  {Team.name}  </Typography> 
+            <h3> Team:  {Team.name}  </h3> 
            <Tooltip title="Edit Team" placement="right-start"> 
                 <IconButton aria-label="edit" onClick = {handleToggleEdit}>
                     <EditIcon />
@@ -89,7 +89,7 @@ function UserPrefs() {
             </>
             }
        </Grid> 
-      { <Typography variant = "h2">Bio</Typography> && user.bio}
+      { <h3>Bio</h3> && user.bio}
 
       </div>
     );

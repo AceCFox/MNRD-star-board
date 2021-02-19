@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stage, Layer, Star } from 'react-konva';
+import { Stage, Layer, Star, Text } from 'react-konva';
 import './StarField.css';
 import {useSelector, useDispatch} from 'react-redux'
 import Popover from '@material-ui/core/Popover';
@@ -61,7 +61,7 @@ export default function StarField (){
             fill={star.color}
             opacity={0.8}
             rotation={star.rotation}
-            shadowColor="grey"
+            shadowColor="#828282"
             shadowBlur={10}
             shadowOpacity={0.6}
             shadowOffsetX={star.isDragging ? 10 : 5}
@@ -71,6 +71,13 @@ export default function StarField (){
             onClick = {handleClick}
           />
         ))}
+        <Text 
+          fill = "white" 
+          fontSize = {30}
+          text = {events.length + " Stars in the sky"}
+          y = {window.innerHeight *.93}
+          x ={10}
+          />
       </Layer>
     </Stage>
     {/* Popover that opens if star is clicked */}
