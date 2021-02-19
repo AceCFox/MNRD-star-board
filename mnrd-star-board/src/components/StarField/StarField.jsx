@@ -45,6 +45,17 @@ export default function StarField (){
     <div className = "starField">
     {/* Draggable Stars: */}
     <Stage width={window.innerWidth} height={window.innerHeight}>
+      <Layer>
+          <Text 
+                fill = "white" 
+                fontSize = {30}
+                fontStyle = "italic"
+                text = {events.length + " Stars in the sky..."}
+                y = {window.innerHeight *.93}
+                x ={10}
+                fontFamily = "roboto"
+                />
+        </Layer>
       <Layer> 
         {events.map((star) => (
           <Star
@@ -71,14 +82,6 @@ export default function StarField (){
             onClick = {handleClick}
           />
         ))}
-        <Text 
-          fill = "white" 
-          fontSize = {30}
-          fontStyle = "italic"
-          text = {events.length + " Stars in the sky..."}
-          y = {window.innerHeight *.93}
-          x ={10}
-          />
       </Layer>
     </Stage>
     {/* Popover that opens if star is clicked */}
