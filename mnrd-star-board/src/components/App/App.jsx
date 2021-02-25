@@ -2,7 +2,7 @@ import './App.css';
 import EventForm from '../EventForm/EventForm.jsx';
 import Starfield from '../StarField/StarField.jsx';
 import UserPrefs from '../UserPrefs/UserPrefs.jsx';
-
+import LoginPage from '../LoginPage/LoginPage.jsx';
 import HeadBar from '../HeadBar/HeadBar.jsx';
 import {
   HashRouter as Router,
@@ -46,6 +46,11 @@ function App() {
               exact
               path="/userPrefs"
               component={UserPrefs}
+            />
+            <Route
+              exact
+              path="/login"
+              component={LoginPage}
             />
           </Switch>
         </header>
