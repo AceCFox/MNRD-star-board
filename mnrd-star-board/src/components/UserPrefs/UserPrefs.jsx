@@ -102,7 +102,7 @@ function UserPrefs() {
             </>      
             }
         </Grid>
-        <br/>
+       {EditTeam && <br/>}
        <Grid container direction = "row" alignContent = "center" justify = "center" >
            {EditTeam ?
            <>
