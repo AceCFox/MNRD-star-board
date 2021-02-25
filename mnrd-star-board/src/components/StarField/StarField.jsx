@@ -67,8 +67,8 @@ export default function StarField (){
             key={star.id}
             id={star.id}
             numPoints={5}
-            innerRadius={12}
-            outerRadius={30}
+            innerRadius={star.innerRadius}
+            outerRadius={star.outerRadius}
             fill={star.color}
             opacity={0.8}
             rotation={star.rotation}

@@ -8,7 +8,9 @@ const eventReducer = (state = [], action) => {
             events[i].y = ( Math.random() * window.innerHeight * .8) + (window.innerHeight * .1);
             events[i].rotation = Math.random() * 180;
             events[i].isDragging = false;
-            events[i].points = Math.floor(Math.random() * Math.floor(4)+5)
+            events[i].points = Math.floor(Math.random() * Math.floor(4)+5);
+            events[i].innerRadius = Math.floor(Math.random() * Math.floor(8)+5);
+            events[i].outerRadius = events[i].innerRadius * 2 + 3;
         }
         return events;
       case 'UNSET_EVENT':
