@@ -8,12 +8,12 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import {useSelector, useDispatch} from 'react-redux'
-import Typography from '@material-ui/core/Typography';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
 
 //style
 const useStyles = makeStyles({
@@ -30,8 +30,10 @@ function UserPrefs() {
     const user = useSelector(state => state.user);
     const teams = useSelector(state => state.teams);
     const [EditTeam, setEditTeam] = useState(false);
+    const [EditPronouns, setEditPronouns] = useState(false);
     const [Team, setTeam] = useState({});
     const dispatch = useDispatch();
+    const [Pronouns, setPronouns]= useState(user.pronouns);
 
      // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
@@ -43,41 +45,76 @@ function UserPrefs() {
         }
     });
     
-    const handleChangeTeam = (event) => {
+    const handleChangeTeam = ( event ) => {
         let id = event.target.value
-        for (let team of teams){
-            if (team.id===id){
-                setTeam(team);
+        for ( let team of teams ){
+            if ( team.id === id ){
+                setTeam( team );
             }
         }
-        dispatch({type: "UPDATE_TEAM", payload: id})
+        dispatch({ type: "UPDATE_TEAM", payload: id })
         handleToggleEdit();
     } 
    
-    const handleToggleEdit = () =>{
-        setEditTeam(!EditTeam)
+    const handleToggleEdit = () => {
+        setEditTeam( !EditTeam )
+    }
+
+    const handleToggleEditPronouns = () => {
+        setEditPronouns( !EditPronouns )
+    }
+
+    const handleChangePronouns = (event) => {
+        setPronouns(event.target.value);
+    };
+
+    const handleSavePronouns = () =>{
+        // dispatch saga to handel pronoun update
+        handleToggleEditPronouns();
     }
   
     return (
       <div>
         <h1>{user.name}'s Preferences</h1>
-        <h5>Pronouns: {user.pronouns}</h5>
-        {/* <br/> */}
+        <Grid container direction = "row" alignContent = "center" justify = "center" >
+            { EditPronouns ?
+            <> 
+                <TextField required id="pronouns" label="Pronouns" value={Pronouns} onChange = {handleChangePronouns} />
+                <Tooltip title="Save Pronouns" placement="right-start"> 
+                    <IconButton aria-label="save" onClick = {handleSavePronouns}>
+                        <SaveAltIcon />
+                    </IconButton>
+                </Tooltip>
+            </>
+            :
+            <>
+                <h5>Pronouns: {user.pronouns}</h5>
+                <Tooltip title="Edit Pronouns" placement="right-start"> 
+                    <IconButton aria-label="edit" onClick = { handleToggleEditPronouns }>
+                        <EditIcon />
+                    </IconButton>
+                </Tooltip>
+            </>      
+            }
+        </Grid>
+        <br/>
        <Grid container direction = "row" alignContent = "center" justify = "center" >
            {EditTeam ?
-           <FormControl size="medium" >
-                <InputLabel id="team-picker-label">Team</InputLabel>
-                    <Select
-                    labelId="team-picker-label"
-                    id="team-picker"
-                    value={Team.id}
-                    onChange={handleChangeTeam}
-                    >
-                    {teams.map((team)=>( 
-                        <MenuItem value={team.id} key = {team.id}>{team.name}</MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
+           <>
+            <FormControl size="medium" >
+                    <InputLabel id="team-picker-label">Team</InputLabel>
+                        <Select
+                        labelId="team-picker-label"
+                        id="team-picker"
+                        value={Team.id}
+                        onChange={handleChangeTeam}
+                        >
+                        {teams.map((team)=>( 
+                            <MenuItem value={team.id} key = {team.id}>{team.name}</MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+            </>
            :
             <>
             <h3> Team:  {Team.name}  </h3> 
