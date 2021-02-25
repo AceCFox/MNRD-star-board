@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Stage, Layer, Star, Text } from 'react-konva';
 import './StarField.css';
 import {useSelector, useDispatch} from 'react-redux'
@@ -11,15 +11,36 @@ export default function StarField (){
   const dispatch = useDispatch()
   const [anchorEl, setAnchorEl] = React.useState({attrs:{x:0, y:0}});
   const [activity, setActivity] = React.useState({date:''});
-
+  const [stars, setStars] = React.useState(events);
+  
   // star info and dragging stored in eventReducer
+  useEffect(() => {
+    setStars(events)
+
+  }, [events]);
+
   const handleDragStart = (e) => {
-    const id = e.target.id();
-    dispatch({type: 'DRAG_STAR', payload: id})
+    let starID = e.target.id();
+    console.log('in handleDragStart with ', starID)
+    setStars(
+      stars.map((star) => {
+        return {
+          ...star,
+          isDragging: star.id === starID,
+        };
+      })
+    );
   };
 
   const handleDragEnd = (e) => {
-    dispatch({type: 'DRAG_END'})
+    setStars(
+      stars.map((star) => {
+        return {
+          ...star,
+          isDragging: false,
+        };
+      })
+    );
   };
 
   // popover functionality:
@@ -57,7 +78,7 @@ export default function StarField (){
                 />
         </Layer>
       <Layer> 
-        {events.map((star) => (
+        {stars.map((star) => (
           <Star
             x={star.x}
             y={star.y}
@@ -77,8 +98,8 @@ export default function StarField (){
             shadowOpacity={0.6}
             shadowOffsetX={star.isDragging ? 10 : 5}
             shadowOffsetY={star.isDragging ? 10 : 5}
-            scaleX={star.isDragging ? 1.2 : 1}
-            scaleY={star.isDragging ? 1.2 : 1}
+            scaleX={star.isDragging ? 1.5 : 1}
+            scaleY={star.isDragging ? 1.5 : 1}
             onClick = {handleClick}
             numPoints = {star.points}
           />
