@@ -21,7 +21,7 @@ export default function StarField (){
 
   const handleDragStart = (e) => {
     let starID = e.target.id();
-    console.log('in handleDragStart with ', starID)
+    //map through array and apply isDragging to the relevant star
     setStars(
       stars.map((star) => {
         return {
@@ -102,6 +102,17 @@ export default function StarField (){
             scaleY={star.isDragging ? 1.5 : 1}
             onClick = {handleClick}
             numPoints = {star.points}
+            // turn the mouse into a pointer on mouseover
+            onMouseEnter={e => {
+              // style stage container:
+              const container = e.target.getStage().container();
+              container.style.cursor = "pointer";
+              // handleClick(e)
+            }}
+            onMouseLeave={e => {
+              const container = e.target.getStage().container();
+              container.style.cursor = "default";
+            }}
           />
         ))}
       </Layer>
