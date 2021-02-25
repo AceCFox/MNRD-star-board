@@ -115,6 +115,22 @@ router.put('/reset', rejectUnauthenticated, (req, res) =>{
   ))
 })
 
+//update the pronouns associated with a User
+router.put('/pronouns', (req, res) => {
+  const queryText = `UPDATE "user" SET "pronouns" = $1 WHERE "id" = $2`
+  //once AUTH is on this project, replace 1 with req.user.id on the next line:
+  const inputValues = [req.body.pronouns, 1]
+
+  pool.query(queryText, inputValues)
+  .then(() => (
+    res.sendStatus(200)
+  ))
+  .catch((error) => (
+    res.sendStatus(500),
+    console.log(error)
+  ))
+})
+
 
 
 

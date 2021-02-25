@@ -33,7 +33,7 @@ function UserPrefs() {
     const [EditPronouns, setEditPronouns] = useState(false);
     const [Team, setTeam] = useState({});
     const dispatch = useDispatch();
-    const [Pronouns, setPronouns]= useState(user.pronouns);
+    const [Pronouns, setPronouns]= useState('');
 
      // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
@@ -44,6 +44,9 @@ function UserPrefs() {
             }
         }
     });
+    useEffect(() => {
+        setPronouns(user.pronouns);
+    }, []);
     
     const handleChangeTeam = ( event ) => {
         let id = event.target.value
@@ -69,7 +72,9 @@ function UserPrefs() {
     };
 
     const handleSavePronouns = () =>{
-        // dispatch saga to handel pronoun update
+        const putObject = {pronouns: Pronouns};
+        // dispatch saga to handle pronoun update
+        dispatch({ type: "UPDATE_PRONOUNS", payload: putObject })
         handleToggleEditPronouns();
     }
   

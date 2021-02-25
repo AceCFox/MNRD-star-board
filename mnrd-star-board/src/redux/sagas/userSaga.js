@@ -24,8 +24,19 @@ function* fetchUser() {
   }
 }
 
+//will fire on UPDATE_PRONOUNS actions
+function* putUserPronouns(action){
+  try{
+      yield axios.put('/api/user/pronouns', action.payload);
+      //call the saga to get the updated user data
+      yield put ({type: 'FETCH_USER'});
+  }catch (error) {
+      console.log('Error with event GET:', error);
+  }
+}
 
 function* userSaga() {
+  yield takeLatest ('UPDATE_PRONOUNS', putUserPronouns);
   yield takeLatest('FETCH_USER', fetchUser);
 }
 
