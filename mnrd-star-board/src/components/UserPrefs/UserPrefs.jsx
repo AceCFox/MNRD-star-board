@@ -14,19 +14,26 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 
 //style
 const useStyles = makeStyles({
-  root: {
-    background: '#00B6F1',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px "grey")',
-    color: 'black'
-  },
-});
-
+    switchBase: {
+      color: '#00B6F1',
+      "&$checked": {
+        color: '#00B6F1'
+      },
+      "& + $track": {
+        backgroundColor: '#00B6F1'
+      }
+    },
+   checked: {},
+    track: {}
+  });
+  
 function UserPrefs() {
+    const classes = useStyles();
     const user = useSelector(state => state.user);
     const teams = useSelector(state => state.teams);
     const [EditTeam, setEditTeam] = useState(false);
@@ -34,6 +41,7 @@ function UserPrefs() {
     const [Team, setTeam] = useState({});
     const dispatch = useDispatch();
     const [Pronouns, setPronouns]= useState('');
+    const [Visible, setVisible] = useState(user.visible)
 
      // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
@@ -76,6 +84,11 @@ function UserPrefs() {
         // dispatch saga to handle pronoun update
         dispatch({ type: "UPDATE_PRONOUNS", payload: putObject })
         handleToggleEditPronouns();
+    }
+
+    const handleToggleVisible = () =>{
+        //TO DO: dispatch saga that updates visible status associated with user
+        setVisible(!Visible)
     }
   
     return (
@@ -130,9 +143,28 @@ function UserPrefs() {
             </Tooltip>
             </>
             }
-       </Grid> 
+       </Grid>
+           <Grid item>
+            <h4>Attendance Visibility:</h4>
+            </Grid>
+       <Grid container direction = "row" alignContent = "center" justify = "center" >
+            <Grid item>
+                < Grid component="label" container alignItems="center" spacing={1}>
+                    <Grid item>Hidden</Grid>
+                    <Grid item>
+                        <Switch checked={Visible} onChange={handleToggleVisible} name="visible?" classes={{switchBase:classes.switchBase }}/>
+                    </Grid>
+                    <Grid item>Visible</Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+        {/* <FormControlLabel
+            // className = {classes.checkBox}
+            label="Visible Attendance Stars"
+            control={<Switch checked={Visible} onChange={handleToggleVisible} name="visible?"
+                classes={{switchBase:classes.switchBase }} color = "default"/>}
+        /> */}
       { <h3>Bio</h3> && user.bio}
-
       </div>
     );
   }
