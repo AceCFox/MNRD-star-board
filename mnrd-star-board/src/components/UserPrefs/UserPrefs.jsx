@@ -91,8 +91,7 @@ function UserPrefs() {
     }
 
     const handleToggleVisible = () =>{
-        //TO DO: dispatch saga that updates visible status associated with user
-        //setVisible(!Visible)
+        //dispatch saga that updates visible status associated with user
         dispatch({ type: "UPDATE_VISIBLE" })
     }
   

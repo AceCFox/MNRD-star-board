@@ -39,6 +39,7 @@ function* putUserPronouns(action){
 //will fire on UPDATE_VISIBLE actions
 function* putUserVisibility(){
   try{
+      // access the route that toggles user visibility in db
       yield axios.put('/api/user/visible');
       //call the saga to get the updated user data
       yield put ({type: 'FETCH_USER'});
