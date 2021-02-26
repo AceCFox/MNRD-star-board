@@ -132,6 +132,21 @@ router.put('/pronouns', (req, res) => {
 })
 
 
+//update the pronouns associated with a User
+router.put('/visible', (req, res) => {
+  const queryText = `UPDATE "user" SET "visible" = NOT "visible" WHERE "id" = $1;`;
+  //once AUTH is on this project, replace 1 with req.user.id on the next line:
+  const inputValues = [1]
+
+  pool.query(queryText, inputValues)
+  .then(() => (
+    res.sendStatus(200)
+  ))
+  .catch((error) => (
+    res.sendStatus(500),
+    console.log(error)
+  ))
+})
 
 
 module.exports = router;

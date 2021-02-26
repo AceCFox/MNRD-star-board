@@ -14,7 +14,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
 //style
@@ -52,9 +51,14 @@ function UserPrefs() {
             }
         }
     });
+
     useEffect(() => {
         setPronouns(user.pronouns);
-    }, []);
+    }, [user.pronouns]);
+
+    useEffect(() => {
+        setVisible(user.visible);
+    }, [user.visible]);
     
     const handleChangeTeam = ( event ) => {
         let id = event.target.value
@@ -88,7 +92,8 @@ function UserPrefs() {
 
     const handleToggleVisible = () =>{
         //TO DO: dispatch saga that updates visible status associated with user
-        setVisible(!Visible)
+        //setVisible(!Visible)
+        dispatch({ type: "UPDATE_VISIBLE" })
     }
   
     return (
@@ -158,12 +163,6 @@ function UserPrefs() {
                 </Grid>
             </Grid>
         </Grid>
-        {/* <FormControlLabel
-            // className = {classes.checkBox}
-            label="Visible Attendance Stars"
-            control={<Switch checked={Visible} onChange={handleToggleVisible} name="visible?"
-                classes={{switchBase:classes.switchBase }} color = "default"/>}
-        /> */}
       { <h3>Bio</h3> && user.bio}
       </div>
     );

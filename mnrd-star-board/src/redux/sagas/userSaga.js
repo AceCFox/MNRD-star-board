@@ -31,13 +31,28 @@ function* putUserPronouns(action){
       //call the saga to get the updated user data
       yield put ({type: 'FETCH_USER'});
   }catch (error) {
-      console.log('Error with event GET:', error);
+      console.log('Error with pronoun update:', error);
+  }
+}
+
+
+//will fire on UPDATE_VISIBLE actions
+function* putUserVisibility(){
+  try{
+      yield axios.put('/api/user/visible');
+      //call the saga to get the updated user data
+      yield put ({type: 'FETCH_USER'});
+      //call saga to get updated activity data
+      yield put ({type: 'FETCH_ACTIVITY'})
+  }catch (error) {
+      console.log('Error with visibility status update:', error);
   }
 }
 
 function* userSaga() {
   yield takeLatest ('UPDATE_PRONOUNS', putUserPronouns);
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest ('UPDATE_VISIBLE', putUserVisibility);
 }
 
 export default userSaga;
