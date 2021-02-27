@@ -41,6 +41,12 @@ function LoginPage() {
         history.push("/form");
     }
 
+    const handleNewUser = () => {
+        alert('NEW USER CLICKED!')
+
+        // go to register page here!
+    }
+
     return (
       <div>
         <div className = "spacer"> </div>
@@ -53,10 +59,17 @@ function LoginPage() {
                 <TextField type = "password" label = "password" value = {Password} onChange = {handleChangePassword}/> 
             </Grid>
             <br/>
-            <Grid item >
-                <Button variant = 'contained' className={classes.root} onClick={handleLogin}> 
-                    Log in
-                </Button>
+            <Grid container item direction = "row" justify = "center" alignItems = "center" spacing = {4}>
+                <Grid item>
+                    <Button variant = 'contained' className={classes.root} onClick={handleLogin}> 
+                        Log in
+                    </Button>
+                </Grid>
+                <Grid item>
+                    <Button variant = 'contained' className={classes.root} onClick = {handleNewUser}> 
+                        New User?
+                    </Button>
+                </Grid>
             </Grid>
         </Grid>
       </div>

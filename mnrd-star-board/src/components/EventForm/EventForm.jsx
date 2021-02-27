@@ -76,14 +76,14 @@ function EventForm() {
                 value = {description}
                 onChange = {handleChange}
             />
-            {/* Photo URL  - TODO - replace with Uppy */}
-            <TextField
+            {/* Photo URL  - currently unused in code TODO - replace with Uppy */}
+            {/* <TextField
                 id="photoURL"
                 label="Add a photo URL:"
                 multiline
                 value = {photoURL}
                 onChange = {handleURL}
-            />
+            /> */}
         </Grid>
         <br/>
         <Button variant = 'contained' className={classes.root} onClick={handleSubmit} > 
