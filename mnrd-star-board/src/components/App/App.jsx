@@ -4,6 +4,7 @@ import Starfield from '../StarField/StarField.jsx';
 import UserPrefs from '../UserPrefs/UserPrefs.jsx';
 import LoginPage from '../LoginPage/LoginPage.jsx';
 import HeadBar from '../HeadBar/HeadBar.jsx';
+import Register from '../Register/Register';
 import {
   HashRouter as Router,
   Route,
@@ -51,6 +52,11 @@ function App() {
               exact
               path="/login"
               component={LoginPage}
+            />
+            <Route
+              exact
+              path="/register"
+              component={Register}
             />
           </Switch>
         </header>

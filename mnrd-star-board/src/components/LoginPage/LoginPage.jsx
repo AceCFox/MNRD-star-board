@@ -42,9 +42,8 @@ function LoginPage() {
     }
 
     const handleNewUser = () => {
-        alert('NEW USER CLICKED!')
-
         // go to register page here!
+        history.push("/register");
     }
 
     return (
