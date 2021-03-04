@@ -34,6 +34,8 @@ function Register() {
     const teams = useSelector(state => state.teams);
     const [passwordError, setPasswordError] = useState(false)
     const [passwordMatchError, setPasswordMatchError] = useState(false)
+    const [nameError, setNameError] = useState(false);
+    const [teamError, setTeamError] = useState(false);
 
     const handleChangeName = (event) => {
         setName(event.target.value)
@@ -61,21 +63,42 @@ function Register() {
     }
 
     const handleRegister = () => {
+        if (!Name){
+            setNameError(true)
+             // TO DO: replace alert with better UI
+            alert('The Name field cannot be left blank')
+            return
+        }
         if (Password.length<7){
             setPasswordError(true)
+             // TO DO: replace alert with better UI
             alert(`oops! Password must contain at least 7 characters`)
+            setNameError(false);
             return
         }
         if (Password !== PasswordConfirm){
             setPasswordMatchError(true)
             // TO DO: replace alert with better UI
             alert(`oops! Passwords don't match`)
-            setPasswordError(false)
+            setPasswordError(false);
+            setNameError(false);
             return
         } 
+        if(!Team.id){
+            setTeamError(true);
+            // TO DO: replace alert with better UI
+            alert(`You have to pick from the selected teams or "other"`);
+            setPasswordError(false);
+            setNameError(false);
+            setPasswordMatchError(false);
+            return
+        }
         const loginObject = {
             name: Name,
-            password: Password
+            password: Password,
+            team_id: Team.id,
+            pronouns: Pronouns,
+            team_name: Team.name
         }
         console.log(loginObject);
          //dispatch login saga HERE
@@ -95,7 +118,7 @@ function Register() {
             <h1>Register Here!</h1>
             <Grid container justify="space-around" direction = "column" spacing = {2}>
             <Grid item>
-                <TextField required label = "Name" value = {Name} onChange = {handleChangeName}/>
+                <TextField required label = "Name" value = {Name} onChange = {handleChangeName} error ={nameError}/>
                 {"\u00a0"}{"\u00a0"}
                 <TextField id="pronouns" label="Pronouns" value={Pronouns} onChange = {handleChangePronouns} />
             </Grid>
@@ -115,7 +138,7 @@ function Register() {
                     onChange = {handleChangePasswordConfirm}/> 
             </Grid>
             <Grid item>
-            <FormControl  className = {classes.formWidth} required>
+            <FormControl  className = {classes.formWidth} required error = {teamError}>
                     <InputLabel id="team-picker-label">Team</InputLabel>
                         <Select
                         labelId="team-picker-label"
