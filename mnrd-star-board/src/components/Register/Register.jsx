@@ -33,6 +33,7 @@ function Register() {
     const [Team, setTeam] = useState({id:''});
     const teams = useSelector(state => state.teams);
     const [passwordError, setPasswordError] = useState(false)
+    const [passwordMatchError, setPasswordMatchError] = useState(false)
 
     const handleChangeName = (event) => {
         setName(event.target.value)
@@ -60,16 +61,22 @@ function Register() {
     }
 
     const handleRegister = () => {
-        if (Password !== PasswordConfirm){
+        if (Password.length<7){
             setPasswordError(true)
+            alert(`oops! Password must contain at least 7 characters`)
+            return
+        }
+        if (Password !== PasswordConfirm){
+            setPasswordMatchError(true)
+            // TO DO: replace alert with better UI
             alert(`oops! Passwords don't match`)
+            setPasswordError(false)
             return
         } 
         const loginObject = {
             name: Name,
             password: Password
         }
-
         console.log(loginObject);
          //dispatch login saga HERE
         //nest this after returned promise, tho
@@ -93,13 +100,18 @@ function Register() {
                 <TextField id="pronouns" label="Pronouns" value={Pronouns} onChange = {handleChangePronouns} />
             </Grid>
             <Grid item>
-                <TextField required type = "password" label = "Password" value = {Password} onChange = {handleChangePassword}/> 
+                <TextField required 
+                    type = "password"
+                    label = "Password" 
+                    value = {Password} 
+                    error = {passwordError}
+                    onChange = {handleChangePassword}/> 
                 {"\u00a0"}{"\u00a0"}
                 <TextField required 
                     type = "password" 
                     label = "Confirm Password" 
                     value = {PasswordConfirm} 
-                    error ={passwordError} 
+                    error ={passwordMatchError} 
                     onChange = {handleChangePasswordConfirm}/> 
             </Grid>
             <Grid item>
