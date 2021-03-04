@@ -32,6 +32,7 @@ function Register() {
     const [Pronouns, setPronouns] = useState ('');
     const [Team, setTeam] = useState({id:''});
     const teams = useSelector(state => state.teams);
+    const [passwordError, setPasswordError] = useState(false)
 
     const handleChangeName = (event) => {
         setName(event.target.value)
@@ -39,6 +40,10 @@ function Register() {
 
     const handleChangePassword = (event) => {
         setPassword(event.target.value)
+    }
+
+    const handleChangePasswordConfirm = (event) => {
+        setPasswordConfirm(event.target.value)
     }
 
     const handleChangePronouns = (event) => {
@@ -55,6 +60,11 @@ function Register() {
     }
 
     const handleRegister = () => {
+        if (Password !== PasswordConfirm){
+            setPasswordError(true)
+            alert(`oops! Passwords don't match`)
+            return
+        } 
         const loginObject = {
             name: Name,
             password: Password
@@ -85,7 +95,12 @@ function Register() {
             <Grid item>
                 <TextField required type = "password" label = "Password" value = {Password} onChange = {handleChangePassword}/> 
                 {"\u00a0"}{"\u00a0"}
-                <TextField required type = "password" label = "Confirm Password" value = {PasswordConfirm}/> 
+                <TextField required 
+                    type = "password" 
+                    label = "Confirm Password" 
+                    value = {PasswordConfirm} 
+                    error ={passwordError} 
+                    onChange = {handleChangePasswordConfirm}/> 
             </Grid>
             <Grid item>
             <FormControl  className = {classes.formWidth} required>
