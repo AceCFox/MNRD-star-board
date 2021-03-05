@@ -22,8 +22,7 @@ router.get('/', (req, res) => {
  */
 router.put('/:id', (req, res) => {
     const queryText = `UPDATE "user" SET "team_id" = $1 WHERE "id" = $2;`
-    //once auth is added replace 1 with user.id;
-    const inputs =[req.params.id, 1];
+    const inputs =[req.params.id, req.user.id];
     pool.query(queryText, inputs)
     .then(() => (
       res.sendStatus(200)
