@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from "react-router-dom";
 
 //styling for the MNRD colored button
@@ -21,6 +21,7 @@ function LoginPage() {
     const [Name, setName] = useState('');
     const [Password, setPassword] = useState ('');
     const dispatch = useDispatch();
+    const errors = useSelector(state => state.errors);
 
     const handleChangeName = (event) => {
         setName(event.target.value)
@@ -34,6 +35,10 @@ function LoginPage() {
         const loginObject = {
             name: Name,
             password: Password
+        }
+        if(!Name||!Password){
+            dispatch({ type: 'LOGIN_INPUT_ERROR' });
+            return
         }
         console.log(loginObject);
          //dispatch login saga HERE
@@ -50,6 +55,7 @@ function LoginPage() {
     return (
       <div>
         <div className = "spacer"> </div>
+        { errors && <h3>{errors.loginMessage}</h3>}
         <h1>Log in to StarBoard </h1>
         <Grid container justify="space-around" direction = "column" spacing = {2}>
             <Grid item>
