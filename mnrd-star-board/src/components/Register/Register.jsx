@@ -101,7 +101,6 @@ function Register() {
             pronouns: Pronouns,
             team_name: Team.name
         }
-        console.log(loginObject);
          //dispatch login saga HERE
          dispatch({ type: "REGISTER", payload: loginObject })
         //nest this after returned promise, tho

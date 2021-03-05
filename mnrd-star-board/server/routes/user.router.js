@@ -10,9 +10,9 @@ const router = express.Router();
 //add rejectUnauthenticated after url on the next line once auth
 router.get('/', (req, res) => {
   // Send back user object from the session (previously queried from the database)
-  //res.send(req.user);
+  res.send(req.user);
   //uncomment the above, and remove below once auth is added
-  const queryText = `SELECT * FROM "user" WHERE "id" = 1;`;
+  // const queryText = `SELECT * FROM "user" WHERE "id" = 1;`;
   pool.query(queryText)
   .then((result) => (
     res.send(result.rows[0])

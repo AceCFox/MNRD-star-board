@@ -35,7 +35,7 @@ router.post('/new', (req, res) => {
     const val = req.body;
 
     //ONCE AUTH is on this project, replace 1 on the next line with req.user.id!    
-    pool.query(postString, [1, val.date, val.description, val.photoURL])
+    pool.query(postString, [req.user.id, val.date, val.description, val.photoURL])
     .then(() => (
         res.sendStatus(200)
     )).catch((error) => (

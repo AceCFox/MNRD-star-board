@@ -32,7 +32,7 @@ function App() {
       <HeadBar/>
         <header className="App-header">
           <Switch>
-            <Redirect exact from="/" to="/form" />
+            <Redirect exact from="/" to="/login" />
             <Route
                 exact
                 path="/form"
