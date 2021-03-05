@@ -101,6 +101,7 @@ export default function StarField (){
             scaleX={star.isDragging ? 1.5 : 1}
             scaleY={star.isDragging ? 1.5 : 1}
             onClick = {handleClick}
+            onTap = {handleClick}
             numPoints = {star.points}
             // turn the mouse into a pointer on mouseover
             onMouseEnter={e => {
