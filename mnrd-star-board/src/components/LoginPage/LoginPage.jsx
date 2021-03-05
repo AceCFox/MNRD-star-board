@@ -12,6 +12,9 @@ const useStyles = makeStyles({
     root: {
       background: '#00B6F1',
     },
+    error:{
+        color: '#EF3340'
+    }
   });
 
 
@@ -66,7 +69,7 @@ function LoginPage() {
             <br/>
             <Grid container item direction = "row" justify = "center" alignItems = "center" spacing = {4}>
                 <Grid item>
-                    <Button variant = 'contained' className={classes.root} onClick={handleLogin} error = {errors.loginMessage}> 
+                    <Button variant = 'contained' className={classes.root} onClick={handleLogin}> 
                         Log in
                     </Button>
                 </Grid>
@@ -76,7 +79,7 @@ function LoginPage() {
                     </Button>
                 </Grid>
             </Grid>
-            {errors.loginMessage && <em>{errors.loginMessage}</em>}
+            {errors.loginMessage && <em className = {classes.error}>{errors.loginMessage}</em>}
         </Grid>
       </div>
     );
