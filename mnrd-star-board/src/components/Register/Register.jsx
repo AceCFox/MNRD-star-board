@@ -36,6 +36,7 @@ function Register() {
     const [passwordMatchError, setPasswordMatchError] = useState(false)
     const [nameError, setNameError] = useState(false);
     const [teamError, setTeamError] = useState(false);
+    const dispatch = useDispatch();
 
     const handleChangeName = (event) => {
         setName(event.target.value)
@@ -102,6 +103,7 @@ function Register() {
         }
         console.log(loginObject);
          //dispatch login saga HERE
+         dispatch({ type: "REGISTER", payload: loginObject })
         //nest this after returned promise, tho
         history.push("/login");
     }
