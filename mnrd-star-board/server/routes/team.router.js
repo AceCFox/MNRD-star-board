@@ -1,11 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 /**
  * GET all teams data
  */
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT * FROM "team";`;
     pool.query(queryText)
   .then((result) => (
@@ -20,7 +21,7 @@ router.get('/', (req, res) => {
 /**
  * PUT route to update the team associated with a user
  */
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
     const queryText = `UPDATE "user" SET "team_id" = $1 WHERE "id" = $2;`
     const inputs =[req.params.id, req.user.id];
     pool.query(queryText, inputs)

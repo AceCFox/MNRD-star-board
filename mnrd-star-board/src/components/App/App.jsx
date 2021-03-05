@@ -48,6 +48,12 @@ function App() {
               path="/userPrefs"
               component={UserPrefs}
             />
+            {/* If none of the other routes matched, we will show a 404. */}
+            <Route render={() =>
+              <center>
+                <h1> 404 </h1>        
+                  <h2> <SportsIcon/> <Link to='/form'>   Skater, return to track! </Link></h2>   
+              </center>} />
           </Switch>
         </header>
       </div>

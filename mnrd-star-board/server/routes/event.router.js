@@ -1,11 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 /**
  * GET all visible entries
  */
-router.get('/all', (req, res) => {
+router.get('/all', rejectUnauthenticated, (req, res) => {
     const queryString = `SELECT "entry"."id", "entry"."date", "entry"."description", "entry"."photo_URL", 
         "user"."name", "user"."pronouns", "team"."color", "team"."name" AS "team_name"
         FROM "entry" 
@@ -27,7 +28,7 @@ router.get('/all', (req, res) => {
 /**
  * POST new entry
  */
-router.post('/new', (req, res) => {
+router.post('/new', rejectUnauthenticated, (req, res) => {
     console.log('in /api/event/new, with ', req.body);
 
     const postString = `INSERT INTO "entry" ("user_id", "date", "description", "photo_URL") 
