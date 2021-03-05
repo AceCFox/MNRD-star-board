@@ -55,7 +55,6 @@ function LoginPage() {
     return (
       <div>
         <div className = "spacer"> </div>
-        { errors && <h3>{errors.loginMessage}</h3>}
         <h1>Log in to StarBoard </h1>
         <Grid container justify="space-around" direction = "column" spacing = {2}>
             <Grid item>
@@ -67,7 +66,7 @@ function LoginPage() {
             <br/>
             <Grid container item direction = "row" justify = "center" alignItems = "center" spacing = {4}>
                 <Grid item>
-                    <Button variant = 'contained' className={classes.root} onClick={handleLogin}> 
+                    <Button variant = 'contained' className={classes.root} onClick={handleLogin} error = {errors.loginMessage}> 
                         Log in
                     </Button>
                 </Grid>
@@ -77,6 +76,7 @@ function LoginPage() {
                     </Button>
                 </Grid>
             </Grid>
+            {errors.loginMessage && <em>{errors.loginMessage}</em>}
         </Grid>
       </div>
     );
