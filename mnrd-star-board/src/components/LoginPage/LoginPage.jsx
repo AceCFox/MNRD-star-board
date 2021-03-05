@@ -37,8 +37,9 @@ function LoginPage() {
         }
         console.log(loginObject);
          //dispatch login saga HERE
+         dispatch({ type: "LOGIN", payload: loginObject })
         //nest this after returned promise, tho
-        history.push("/form");
+        // history.push("/form");
     }
 
     const handleNewUser = () => {
