@@ -104,12 +104,12 @@ function Register() {
          //dispatch login saga HERE
          dispatch({ type: "REGISTER", payload: loginObject })
         //nest this after returned promise, tho
-        history.push("/login");
+        history.push("/form");
     }
 
     const handleReturningUser = () => {
         // go to register page here!
-        history.push("/login");
+        dispatch({type:'SET_TO_LOGIN_MODE'})
     }
 
     return (

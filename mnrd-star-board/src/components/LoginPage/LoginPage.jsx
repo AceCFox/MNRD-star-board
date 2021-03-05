@@ -44,7 +44,7 @@ function LoginPage() {
 
     const handleNewUser = () => {
         // go to register page here!
-        history.push("/register");
+        dispatch({type:'SET_TO_REGISTER_MODE'});
     }
 
     return (

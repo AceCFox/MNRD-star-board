@@ -2,9 +2,8 @@ import './App.css';
 import EventForm from '../EventForm/EventForm.jsx';
 import Starfield from '../StarField/StarField.jsx';
 import UserPrefs from '../UserPrefs/UserPrefs.jsx';
-import LoginPage from '../LoginPage/LoginPage.jsx';
 import HeadBar from '../HeadBar/HeadBar.jsx';
-import Register from '../Register/Register';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import {
   HashRouter as Router,
   Route,
@@ -15,6 +14,7 @@ import {
 import { useDispatch } from 'react-redux'
 import React, { useEffect } from 'react';
 import 'fontsource-roboto';
+import SportsIcon from '@material-ui/icons/Sports';
 
 function App() {
   const dispatch = useDispatch()
@@ -32,31 +32,21 @@ function App() {
       <HeadBar/>
         <header className="App-header">
           <Switch>
-            <Redirect exact from="/" to="/login" />
-            <Route
+            <Redirect exact from="/" to="/form" />
+            <ProtectedRoute
                 exact
                 path="/form"
                 component={EventForm}
               />
-             <Route
+             <ProtectedRoute
               exact
               path="/starField"
               component={Starfield}
             />
-            <Route
+            <ProtectedRoute
               exact
               path="/userPrefs"
               component={UserPrefs}
-            />
-            <Route
-              exact
-              path="/login"
-              component={LoginPage}
-            />
-            <Route
-              exact
-              path="/register"
-              component={Register}
             />
           </Switch>
         </header>

@@ -11,6 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux'
+import { useHistory } from "react-router-dom";
 
 //styling for the MNRD colored button
 const useStyles = makeStyles({
@@ -21,6 +22,7 @@ const useStyles = makeStyles({
 
 
 function EventForm() {
+    let history = useHistory();
     const [description, setDescription] = useState('');
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [photoURL, setPhotoURL] = useState('');
@@ -31,9 +33,9 @@ function EventForm() {
         setDescription(event.target.value);
       };
     
-    const handleURL = (event) => {
-        setPhotoURL(event.target.value);
-    };
+    // const handleURL = (event) => {
+    //     setPhotoURL(event.target.value);
+    // };
 
     const handleSubmit = () =>{
         const postObject = {
@@ -43,6 +45,7 @@ function EventForm() {
         }
        // alert(`button clicked! ` + postObject.description + postObject.date + postObject.photoURL);
         dispatch({type: "POST_ACTIVITY", payload: postObject})
+        history.push("/starField");
     }
 
     return (
