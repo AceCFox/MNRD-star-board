@@ -6,7 +6,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 /**
  * GET all teams data
  */
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/', (req, res) => {
     const queryText = `SELECT * FROM "team";`;
     pool.query(queryText)
   .then((result) => (
