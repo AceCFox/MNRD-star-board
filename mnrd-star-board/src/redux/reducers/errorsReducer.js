@@ -23,8 +23,14 @@ const registrationMessage = (state = '', action) => {
   switch (action.type) {
     case 'CLEAR_REGISTRATION_ERROR':
       return '';
-    case 'REGISTRATION_INPUT_ERROR':
-      return 'Choose a derby name and password!';
+    case 'REGISTRATION_NAME_ERROR':
+      return 'The Name field cannot be left blank.';
+    case 'REGISTRATION_PASSWORD_LENGTH_ERROR':
+      return 'oops! Password must contain at least 7 characters.';
+    case 'REGISTRATION_PASSWORD_MATCH_ERROR':
+      return `oops! Passwords don't match.`;
+    case 'REGISTRATION_TEAM_ERROR':
+      return `You have to pick from the selected teams or "other"`;
     case 'REGISTRATION_FAILED':
       return 'Oops! That didn\'t work. The derby name might already be taken. Try again!';
     default:

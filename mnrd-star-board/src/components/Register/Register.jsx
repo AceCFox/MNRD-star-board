@@ -19,6 +19,9 @@ const useStyles = makeStyles({
     },
     formWidth: {
         minWidth: 150
+    },
+    error:{
+        color: '#EF3340'
     }
   });
 
@@ -37,6 +40,7 @@ function Register() {
     const [nameError, setNameError] = useState(false);
     const [teamError, setTeamError] = useState(false);
     const dispatch = useDispatch();
+    const errors = useSelector(state => state.errors);
 
     const handleChangeName = (event) => {
         setName(event.target.value)
@@ -66,29 +70,30 @@ function Register() {
     const handleRegister = () => {
         if (!Name){
             setNameError(true)
-             // TO DO: replace alert with better UI
-            alert('The Name field cannot be left blank')
+             // set registration error in errors reducer
+            dispatch({type: 'REGISTRATION_NAME_ERROR'})
             return
         }
         if (Password.length<7){
             setPasswordError(true)
-             // TO DO: replace alert with better UI
-            alert(`oops! Password must contain at least 7 characters`)
+            // set registration error in errors reducer
+            dispatch({type: 'REGISTRATION_PASSWORD_LENGTH_ERROR'})
             setNameError(false);
             return
         }
+        // TO DO: More password error handling for other bad pass cases
         if (Password !== PasswordConfirm){
             setPasswordMatchError(true)
-            // TO DO: replace alert with better UI
-            alert(`oops! Passwords don't match`)
+            // set registration error in errors reducer
+            dispatch({type: 'REGISTRATION_PASSWORD_MATCH_ERROR'})
             setPasswordError(false);
             setNameError(false);
             return
         } 
         if(!Team.id){
             setTeamError(true);
-            // TO DO: replace alert with better UI
-            alert(`You have to pick from the selected teams or "other"`);
+            // set registration error in errors reducer
+            dispatch({type: 'REGISTRATION_TEAM_ERROR'})
             setPasswordError(false);
             setNameError(false);
             setPasswordMatchError(false);
@@ -166,6 +171,7 @@ function Register() {
                     </Button>
                 </Grid>
             </Grid>
+            {errors.registrationMessage && <em className = {classes.error}>{errors.registrationMessage}</em>}
         </Grid>
       </div>
     );
