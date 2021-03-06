@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-
+import { useSelector } from 'react-redux'
 
 //style
 const useStyles = makeStyles({
@@ -22,6 +22,7 @@ const useStyles = makeStyles({
 function HeadBar() {
   let history = useHistory();
   const classes = useStyles();
+  const user = useSelector(state => state.user);
 
   function goForm() {
     history.push("/form")
@@ -34,9 +35,10 @@ function HeadBar() {
   function goPrefs() {
     history.push("/userPrefs")
   }
-
     return (
       <div>
+        {/* HeadBar only visible if user is logged in */}
+        {user.id &&
         <AppBar className = {classes.root} >
           <Toolbar>
             <Grid container justify="space-around">
@@ -46,6 +48,7 @@ function HeadBar() {
             </Grid>
           </Toolbar>
         </AppBar>
+        }
       </div>
     );
   }
