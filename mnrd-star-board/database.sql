@@ -32,7 +32,7 @@ INSERT INTO  "team" ("name", "color") VALUES
 	('Orange', '#FF6900'),
 	('Pink', '#D90E81'),
 	('Officials', '#FFFFFF'),
-	('Frostbite', '#4C2683'),
+	('Frostbite', '#6F519B'),
 	('Windchill', '#65C0E5'),
 	('All-Stars', '#00B6F1'),
 	('Other', '#FFD700');
